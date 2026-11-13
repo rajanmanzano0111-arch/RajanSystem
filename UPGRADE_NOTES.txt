@@ -1,0 +1,33 @@
+BITBYTE PC PARTS STORE - FULL UPGRADE (v2.0.0)
+
+Implemented:
+- Preserved the original Express + MySQL app and existing dashboard layout.
+- Added secure password hashing with Node.js scrypt and an authenticated sign-in screen.
+- Added Admin, Manager, Cashier, and Inventory Staff roles with server-side route authorization.
+- Added admin user-account creation and account enable/disable controls.
+- Added signed HttpOnly SameSite=Strict sessions, idle expiry, login throttling, write-request origin checks, and basic security headers.
+- Added product-specific low-stock thresholds and dashboard alerts.
+- Added stock movement history for stock reservations, cancellation restocks, item additions/edits/removals, initial stock, and manual stock adjustments.
+- Fixed order cancellation/restoration consistency; cancelled orders cannot be reactivated.
+- Restricted order item edits to Pending orders and protected paid/shipped/completed order history.
+- Added server-side validation and safer deletion checks.
+- Added sales reports distinguishing Paid/Shipped/Completed order value, Pending value, and Cancelled value.
+- Added printable order receipts.
+- Added automatic database migration and a reference SQL migration.
+- Added .env configuration and setup instructions.
+
+Static tests:
+- node --check store.js: PASS.
+- Extracted embedded browser JavaScript and ran node --check: PASS.
+
+Not tested in this environment:
+- Live MySQL/MariaDB schema migration and data operations.
+- Browser login and UI interactions.
+- End-to-end order, stock, and report workflows.
+
+Important:
+- Back up the database before upgrading.
+- Set a strong SESSION_SECRET and bootstrap Admin credentials in .env before first start.
+- Sessions are memory-based and the app binds to 127.0.0.1; this is not a public-production deployment.
+- Sales reports use order status, not actual payment transactions. A separate payment ledger/refund workflow and cost/profit reporting remain future work.
+- Existing stock balances are not automatically reconciled, and old stock movement history is not backfilled.

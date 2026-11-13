@@ -1,0 +1,14 @@
+{
+  "name": "pc-parts-store",
+  "version": "2.0.0",
+  "description": "BitByte PC Parts Store Management System",
+  "main": "store.js",
+  "scripts": {
+    "start": "node store.js",
+    "check": "node --check store.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "mysql2": "^3.11.0"
+  }
+}
